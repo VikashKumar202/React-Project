@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import Product from './products.css';
 import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionType from '../../store/actions';
-//import {getAllProduct} from '../../store/actions';
-import flower from '../../../src/flower.jpg';
-
-
 
 class products extends Component {
   
@@ -21,31 +16,12 @@ class products extends Component {
         }
     }
 
-
     componentDidMount() {
         this.props.getAllProduct();
     }
 
-    /* addCartToProductHandler = (event) => {
-        const productCount = this.state.productCount;
-        console.log('ProductCount=' + productCount)
-        const counter = productCount + 1;
-        this.setState({ productCount: counter })
-        console.log("Added" + counter);
-        console.log(this.state.productCount)
-
-        let id = event.target.value;
-        console.log('Product Id:' + id);
-       
-        
-    } */
-
-    
     render() {
-        //const arrProducts = this.state
-       
         let products=this.props.products;
-        
         
         //let categories=['All','vegetables','fruits'];
             const filterProduct=(category)=>{
@@ -66,7 +42,6 @@ class products extends Component {
         return (
           
             <div>
-                <img src={flower} />
               Products:{this.state.productCount}
                 <h1>All Products</h1>
                 <div className="sidenav">
@@ -77,7 +52,7 @@ class products extends Component {
                 </div>
                 {
                     this.state.prod.length > 0 ? 
-                        this.state.prod.map(post => <Product post = {post} clicked={()=>this.props.addProductToCart(post.id)}/>) :
+                        this.state.prod.map(post => <Product key="post.index" post = {post} clicked={()=>this.props.addProductToCart(post.id)}/>) :
                         this.props.products.map(post => <Product post = {post} clicked={() => this.props.addProductToCart(post.id)} /> )
                 }
                

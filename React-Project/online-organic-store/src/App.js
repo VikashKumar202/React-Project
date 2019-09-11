@@ -6,6 +6,7 @@ import Admin from './Admin/AddProducts';
 import EditProduct from './Admin/EditProducts';
 import EditFormProduct from './Admin/EditFormProduct';
 import productcart from './components/Products/productcart';
+import home from './components/home/home';
 
 
 import {BrowserRouter,Route,Switch} from 'react-router-dom';
@@ -17,13 +18,13 @@ function App() {
   }
   return (
     <div className="App">
-     
-      <h1>Welcome TO Online Organic Store</h1>
+ 
+      <h1 className="font-italic text-primary">Welcome TO Online Organic Store</h1>
       <BrowserRouter>
       <div className="App">
      <Navigation/>
      <Switch>
-     <Route exact path="/"  render={()=><h1>Home Page</h1>} ></Route>
+      <Route exact path="/"  component={home}></Route>
       <Route path="/products" component={Products}></Route>
       <Route path="/AddProducts" component={Admin}></Route>
       <Route path="/EditProducts" component={EditProduct}></Route>

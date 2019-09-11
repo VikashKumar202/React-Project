@@ -1,3 +1,4 @@
+
 nav{
     display:flex;
     justify-content: space-around;
@@ -14,4 +15,14 @@ nav{
     justify-content: space-around;
     align-items: center;
     list-style: none;
+    font-size: 20px;
+    text-shadow: 3px 2px cyan;
+   
+}
+
+.img{
+  
+    padding: 5px;
+    width: 8px;  
+    height: 5px;
 }

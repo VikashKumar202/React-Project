@@ -35,8 +35,15 @@ class AddProducts extends Component {
           break;
 
           case 'imageUrl':
+         let url=event.target.value;
+          let valid =true;
+          if(url.match(/^((http[s]?|ftp):\/)?\/?([^:\/\s]+)((\/\w+)*\/)([\w\-\.]+[^#?\s]+)(.*)?(#[\w\-]+)?$/)!=null){
+            console.log('matched')
+            valid=false;
+          }
+
          if(this.state.errorMsg.imageUrl =event.target.value.length <1 ? 'imageUrl cant be empty!': '');
-        else(this.state.errorMsg.imageUrl = event.target.value.length < 5? 'imageUrl must be 5 characters long!': '');
+        else(this.state.errorMsg.imageUrl = valid? 'imageUrl is not matched!': '');
        
           break;
 
@@ -102,12 +109,6 @@ this.setState({[event.target.name]: event.target.value});
       else{
         alert('Can not Submit');
       }
-      
-      
-
-
-
-       
     } 
 
 

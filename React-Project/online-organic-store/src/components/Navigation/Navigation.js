@@ -1,14 +1,14 @@
 import React ,{Component} from 'react'
 import {Link} from 'react-router-dom'
-import NavClass from './Navigation.css';
+import './Navigation.css';
+import imageLogo from '../../assets/logo.png'
 
 
 class Navigation extends Component
 {
     render(){
         return(
-            <nav style={NavClass}>
-                <h3>Logo</h3>
+            <nav>
                 <ul className="nav-link">
                 <Link to="/" >
                         <li>Home</li>

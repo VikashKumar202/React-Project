@@ -10,8 +10,8 @@ class productcart extends Component{
 
         this.state={
             tempArrProducts:[],
-            productCount:1
-           
+            productCount:1,
+           totalPrice:0
         }
        
     }
@@ -46,35 +46,45 @@ class productcart extends Component{
 
         const products=this.props.products;
         console.log(products)
-       
+        // this.setState({
+        //     totalPrice:this.props.price*this.props.quantity
+        // });
         
+        let bill=0;
 
        // const {tempArrProducts,errormsg}=this.state
         return(
-
+                products.length>0?
             <div>
-                
+                 
                 <h1>Your Cart</h1>
                 <table className="tableStyle">
                     <tbody><tr><th>Category</th><th>Name</th><th>Price</th><th>Quantity</th></tr>
                   {
-                    products.map(product => 
+                     
+                    products.map(product =>{
+                        bill= bill+product.price*product.quantity;
+                        return (  
                     <tr key={product.id}>
                         <td>{product.category}</td>
                         <td>{product.title}</td>
                         <td>{product.price*product.quantity}</td>
                         <td><button className="btn btn-primary"  onClick={()=>this.props.increseProductCount(product.id)}>+</button>{product.quantity}<button className="btn btn-primary" onClick={(event)=>this.props.decreaseProductCount(product.id)}>-</button></td>
                         
+                            
+                       
                     </tr>
-                   
+                        )
+                    }
                     )}
+                  
                     
                 </tbody>
                 </table>
-                
+                <p>Total Price={bill}</p>
 
             </div>
-            
+            :<h1>No any Product to cart</h1>
      
         )
    
