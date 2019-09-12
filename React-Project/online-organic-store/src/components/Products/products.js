@@ -4,6 +4,8 @@ import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actionType from '../../store/actions';
+import './products.css';
+
 
 class products extends Component {
   
@@ -12,7 +14,7 @@ class products extends Component {
 
         this.state = {
             prod: [],
-            productCount:0
+          
         }
     }
 
@@ -22,7 +24,7 @@ class products extends Component {
 
     render() {
         let products=this.props.products;
-        
+       
         //let categories=['All','vegetables','fruits'];
             const filterProduct=(category)=>{
                 
@@ -42,24 +44,40 @@ class products extends Component {
         return (
           
             <div>
-              Products:{this.state.productCount}
+              
                 <h1>All Products</h1>
                 <div className="sidenav">
                     <div><Link to="/products" onClick={()=>filterProduct('All')}>All Product</Link></div>
                     <div><Link to="/products" onClick={()=>filterProduct('fruits')} >Fruits</Link></div>
-                    <div><Link to="/products" onClick={()=>filterProduct('vegetables')}>Vegitables</Link></div>
-                    
+                    <div><Link to="/products" onClick={()=>filterProduct('vegetables')}>Vegetables</Link></div>  
                 </div>
-                {
-                    this.state.prod.length > 0 ? 
-                        this.state.prod.map(post => <Product key="post.index" post = {post} clicked={()=>this.props.addProductToCart(post.id)}/>) :
-                        this.props.products.map(post => <Product post = {post} clicked={() => this.props.addProductToCart(post.id)} /> )
-                }
-               
-            </div>
-        )
-    }
-}
+                
+                       {
+                           this.state.prod.length>0?
+                                this.state.prod.map(product =>  
+                                <div className="Product">
+                                <div>Category:{product.category}</div>
+                                <div>Name:{product.title}</div>
+                                <div><img src={product.imageUrl} ></img></div>
+                                <div>Price:{product.price}</div>
+                                <div><button className="btn btn-primary" onClick={() => this.props.addProductToCart(product.id)}>Add to Cart</button> </div>
+                                </div>  
+                                ) : this.props.products.map(product =>  
+                                <div className="Product">
+                                <div>Category:{product.category}</div>
+                                <div>Name:{product.title}</div>
+                                <div><img src={product.imageUrl} ></img></div>
+                                <div>Price:{product.price}</div>
+                                <div><button className="btn btn-primary" onClick={() => this.props.addProductToCart(product.id)}>Add to Cart</button> </div>
+                                  </div> 
+                                  )
+                        }
+                                
+                 </div>
+    
+                );
+            }
+        }
 
 
 const mapStateToProps = state => {

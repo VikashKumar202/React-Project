@@ -25,6 +25,12 @@ const reducer = (state = initialProductState, action) => {
             
         }
 
+        case actionType.ADDPRODUCT:
+        return{
+            ...state,
+            arrProducts:action.value
+        }
+
         case actionType.DELETEPRODUCT:
         let updatedArray=state.arrProducts;
         console.log("value in reducer:"+action.value);

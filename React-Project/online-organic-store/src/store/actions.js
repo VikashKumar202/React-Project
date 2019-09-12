@@ -6,12 +6,22 @@ export const ADDPRODUCTTOCART='ADDPRODUCTTOCART';
 export const INCREASEPRODUCTCOUNT='INCREASEPRODUCTCOUNT';
 export const DECREASEPRODUCTCOUNT='DECREASEPRODUCTCOUNT';
 export const DELETEPRODUCTCART='DELETEPRODUCTCART';
+export const ADDPRODUCT='ADDPRODUCT';
+
+
 
 export const setAllProduct=(getData)=>{
     return{
         type:'GETALLPRODUCT',
         value:getData
     } 
+}
+
+export const setAddProduct=(newData)=>{
+    return{
+        type:'ADDPRODUCT',
+        value:newData
+    }
 }
 
 export const setDeleteProduct=(id)=>{
@@ -29,6 +39,17 @@ export const getAllProduct = () => {
         })
     } 
    
+}
+
+export const addProduct=(product)=>{
+console.log('new ',product);
+return dispatch=>{
+    axios.post('http://localhost:3000/api/products',product)
+    .then(response=>{
+        dispatch(setAddProduct(response.data))
+    })
+}
+
 }
 
 export const deleteProduct=(id)=>{
@@ -83,3 +104,4 @@ export const deleteProductCart=(id)=>{
         value:id
     } 
 }
+

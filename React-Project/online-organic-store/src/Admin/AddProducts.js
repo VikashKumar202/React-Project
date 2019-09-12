@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
-import axios from 'axios';
+import {connect} from 'react-redux'
+import Axios from 'axios';
+import * as actionType from '../store/actions';
 
 class AddProducts extends Component {
     constructor(props) {
@@ -95,20 +97,10 @@ this.setState({[event.target.name]: event.target.value});
 
        }
 
-        axios.post('http://localhost:3000/api/products',product)
-        .then(response=>{
-            console.log(response)
-        })
-        .catch(error=>{
-            console.log(error)
-        })
-        alert('Addded');
-        
-        
+       this.props.addProduct(product);
+       alert('Addded');
       }
-      else{
-        alert('Can not Submit');
-      }
+      
     } 
 
 
@@ -167,4 +159,11 @@ this.setState({[event.target.name]: event.target.value});
   }
 }
 
-export default AddProducts;
+const mapDispatchToProps=(dispatch)=>{
+  return{
+    addProduct:(product)=>dispatch(actionType.addProduct(product))
+    
+  }
+}
+
+export default connect(null,mapDispatchToProps)(AddProducts);
